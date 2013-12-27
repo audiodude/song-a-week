@@ -1,43 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Song a week</title>
-  <link type="text/css" rel="stylesheet" href="/static/css/main.css"/>
-</head>
-<body>
-  <h1 id="site-header">Song-A-Week</h1>
-  <div id="toolbar">
-    <ul>
-      <li>listen</li>
-      <li>about</li>
-      <li>member profiles</li>
-      <li>apply</li>
-      <li>login</li>
-    </ul>
-  </div>
-  <div id="content">
-    <p>
-      Some people feel an never-ending aching need to create. These people want
-      to bring something new, different, or at least exciting into this world.
-      Many times, they are frustrated in their efforts. They don't know where to
-      start, or how to proceed. They fear their work will go unnoticed or
-      unappreciated.
-    </p>
-    <p>
-      Inspired by Bob Schneider's <a href="http://www.npr.org/2013/11/24/246755925/for-a-few-musicians-beating-songwriters-block-is-all-in-the-game">'The Song Game'</a> we have gathered here for this purpose: to overcome writer's block and
-      procrastination and bring music into this world, one week and one song at
-      a time.
-    </p>
-    <p>
-      If you are an existing member, you can login using the toolbar above. From
-      there you will be able to manage your submissions and profile.
-    </p>
-    <p>
-      For visitors and guests, welcome! You can hear a selection of our songs
-      which have been made public.
-    </p>
-    <p>
-      If you'd like to join our game, you can certainly apply for membership.
-    </p>
-</body>
-</html>
+<% content_for :jumbotron do %>
+<%= image_tag image_path('composition.jpg'), :class => 'jumbo-image' %>
+<p>
+  Some people feel a never-ending aching need to create. These people want
+  to bring something new, different, or at least exciting into this world.
+  Many times, they are frustrated in their efforts. They don't know where to
+  start, or how to proceed. They fear their work will go unnoticed or
+  unappreciated.
+</p>
+<p>
+  Inspired by Bob Schneider's <a href="http://www.npr.org/2013/11/24/246755925/for-a-few-musicians-beating-songwriters-block-is-all-in-the-game">'The Song Game'</a> we have gathered here for this purpose: to overcome writer's block and
+  procrastination and bring music into this world, one week and one song at
+  a time.
+</p>
+<% end %>
