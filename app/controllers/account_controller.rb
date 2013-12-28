@@ -12,6 +12,7 @@ def apply
       @user.websites << Website.new(url: url)
     end
     if @user.save
+      WelcomeMailer.welcome_email(@user).deliver
       redirect_to :root
     end
   else
