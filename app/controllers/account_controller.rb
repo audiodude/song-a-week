@@ -7,6 +7,10 @@ end
 def apply
   if request.post?
     @user = User.new(user_params)
+    for url in params[:user][:website].find_all{|url| !url.empty?}
+      puts "Url is =====> #{url}"
+      @user.websites << Website.new(url: url)
+    end
     if @user.save
       redirect_to :root
     end

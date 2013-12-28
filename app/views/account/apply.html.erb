@@ -4,8 +4,15 @@
   <div class="col-sm-offset-1 col-sm-10">
     <div class="alert alert-danger">
       <ul>
-        <% for msg in @user.errors.full_messages %>
-        <li><%= msg %></li>
+        <% @user.errors.keys.each do |attr| %>
+          <% if attr != :websites %>
+            <% @user.errors.full_messages_for(attr).each do |msg| %>
+            <li><%= msg %></li> 
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if @user.errors.include?(:websites) %>
+        <li>One or more of the websites were invalid</li>
         <% end %>
       </ul>
     </div>
@@ -44,18 +51,23 @@
       <span class="help-block">As it will appear on the site and in emails. Please use some variation of your real name or nickname. This is not a username or an alias (you will choose that next).</span>
     </div>
   </div>
-  <div class="form-group  <%= 'has-error' if !@user.errors[:username].empty? %>">
+  <div class="form-group <%= 'has-error' if !@user.errors[:username].empty? %>">
     <label for="user_username" class="col-sm-2 control-label">username</label>
     <div class="col-sm-4">
       <%= f.text_field :username, class: 'form-control', placeholder: 'Choose a username' %>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group <%= 'has-error' if !@user.errors[:websites].empty? %>">
     <label for="name" class="col-sm-2 control-label">websites</label>
     <div class="col-sm-4">
-      <input name="user[website][]" class="form-control" placeholder="http://"><br/>
-      <input name="user[website][]" class="form-control" placeholder="http://"><br/>
+      <% @user.websites.each_with_index do |website, i| %>
+      <input name="user[website][]" value="<%= website.url %>" class="form-control" placeholder="http://"><% if i < 2 %><br/><% end %>
+      <% end %>
+      <% rem_count = 3 - @user.websites.size %>
+      <% rem_count.times do |i| %>
       <input name="user[website][]" class="form-control" placeholder="http://">
+      <% if i < rem_count - 1 %><br/><% end %>
+      <% end %>
       <span class="help-block">Enter up to three websites, such as Twitter or Soundcloud. Optional.</span>
     </div>
   </div>
