@@ -1,0 +1,74 @@
+<% if !@user.errors.empty? %>
+<div class="row">
+  <div
+  <div class="col-sm-offset-1 col-sm-10">
+    <div class="alert alert-danger">
+      <ul>
+        <% for msg in @user.errors.full_messages %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= form_for @user, url: :apply, method: 'POST', html: {class: 'form-horizontal'} do |f| %>
+<form class="form-horizontal" role="form" method="POST">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <h3>Login details</h3>
+    </div>
+  </div>
+  <div class="form-group <%= 'has-error' if !@user.errors[:email].empty? %>">
+    <label for="user_email" class="col-sm-2 control-label">email</label>
+    <div class="col-sm-4">
+      <%= f.email_field :email, class: 'form-control', placeholder: 'Your email'%>
+    </div>
+  </div>
+  <div class="form-group <%= 'has-error' if !@user.errors[:password].empty? %>">
+    <label for="user_password" class="col-sm-2 control-label">password</label>
+    <div class="col-sm-4">
+      <%= f.password_field :password, class: 'form-control', placeholder: 'Choose a password' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <h3>Information about you</h3>
+    </div>
+  </div>
+  <div class="form-group <%= 'has-error' if !@user.errors[:name].empty? %>">
+    <label for="name" class="col-sm-2 control-label">name</label>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Your real name' %>
+      <span class="help-block">As it will appear on the site and in emails. Please use some variation of your real name or nickname. This is not a username or an alias (you will choose that next).</span>
+    </div>
+  </div>
+  <div class="form-group  <%= 'has-error' if !@user.errors[:username].empty? %>">
+    <label for="user_username" class="col-sm-2 control-label">username</label>
+    <div class="col-sm-4">
+      <%= f.text_field :username, class: 'form-control', placeholder: 'Choose a username' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">websites</label>
+    <div class="col-sm-4">
+      <input name="user[website][]" class="form-control" placeholder="http://"><br/>
+      <input name="user[website][]" class="form-control" placeholder="http://"><br/>
+      <input name="user[website][]" class="form-control" placeholder="http://">
+      <span class="help-block">Enter up to three websites, such as Twitter or Soundcloud. Optional.</span>
+    </div>
+  </div>
+  <div class="form-group <%= 'has-error' if !@user.errors[:application].empty? %>">
+    <label for="name" class="col-sm-2 control-label">application</label>
+    <div class="col-sm-4">
+      <%= f.text_area :application, class: 'form-control', rows: 6 %>
+      <span class="help-block">A brief description of your background in music and your reasons for wanting to join the group. Must be more than 50 characters.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn-default">Apply</button>
+    </div>
+  </div>
+<% end %>

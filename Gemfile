@@ -33,4 +33,5 @@ group :doc do
 end
 
 gem 'rails_12factor', group: :production
+gem 'bcrypt-ruby', '~> 3.1.2'
 ruby "2.0.0"

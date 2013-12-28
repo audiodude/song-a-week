@@ -16,7 +16,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Song-A-Week</a>
+        <%= link_to 'Song-A-Week', :root, :class => 'navbar-brand' %>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
@@ -31,7 +31,7 @@
             <ul class="dropdown-menu">
               <li><a href="#">login</a></li>
               <li class="divider"></li>
-              <li><a href="#">apply for membership</a></li>
+              <li><%= link_to 'apply for membership', :apply %></a></li>
             </ul>
           </li>
         </ul>
@@ -39,11 +39,15 @@
     </div>
   </div>
 
+
+<% jt = yield :jumbotron %>
+<% if !jt.empty? %>
 <div class="container">
   <div class="jumbotron">
-    <%= yield :jumbotron %>
+    <%= jt %>
   </div>
 </div>
+<% end %>
 
 <%= yield %>
 
