@@ -1,21 +1,29 @@
-<div class="container">
-  <div class="jumbotron">
-    <h2>Moderate applications</h2>
-    <p>
-      Here's how this works: Just like when you joined the site, every new
-      member is put into a 'new' or 'pending' state when he or she first 
-      joins. Their membership applications must be approved by an existing
-      member for them to be granted full access to the site/group. Since you
-      have met the qualifications for moderating applications (at the time of
-      writing, that means you have posted songs for 3 consecutive weeks), the
-      person who will approve the new applications is you.
-    </p>
-</div>
+<% content_for :jumbotron do %>
+  <h2>Moderate applications</h2>
+  <p>
+    <b>Here's how this works:</b> Just like when you joined the site, every
+		new member is put into a 'new' or 'pending' state when he or she first 
+    joins. Their membership applications must be approved by an existing
+    member for them to be granted full access to the site/group. Since you
+    have met the qualifications for moderating applications (at the time of
+    writing, that means you have posted songs for 3 consecutive weeks), the
+    person who will approve the new applications is you.
+  </p>
+<% end %>
 
 <% for user in @users %>
-  <div class="row">
-    <div class="col-sm-offset-1 col-9 moderate-user">
-      <%= user.name %>
+  <div class="row moderate-user">
+    <div class="col-sm-offset-1 col-sm-3">
+      <p class="moderate-name"><%= user.name %></p>
+			<% for website in user.websites %>
+			  <p><a href="<%= website.url %>"><%= truncate(website.url, length: 40) %></a></p>
+			<% end %>
     </div>
+		<div class="col-sm-7">
+			<p class="moderate-username"><b>username:</b> <%= user.username %></p>
+			<p class="moderate-application">
+				<%= simple_format user.application %>
+			</p>
+		</div>
   </div>
 <% end %>
