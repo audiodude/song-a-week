@@ -45,14 +45,14 @@
 <div class="form-group <%= 'has-error' if !@user.errors[:name].empty? %>">
   <label for="name" class="col-sm-2 control-label">name</label>
   <div class="col-sm-4">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Your real name' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Your real name', maxlength: 40 %>
     <span class="help-block">As it will appear on the site and in emails. Please use some variation of your real name or nickname. This is not a username or an alias (you will choose that next).</span>
   </div>
 </div>
 <div class="form-group <%= 'has-error' if !@user.errors[:username].empty? %>">
   <label for="user_username" class="col-sm-2 control-label">username</label>
   <div class="col-sm-4">
-    <%= f.text_field :username, class: 'form-control', placeholder: 'Choose a username' %>
+    <%= f.text_field :username, class: 'form-control', placeholder: 'Choose a username', maxlength: 20 %>
   </div>
 </div>
 <div class="form-group <%= 'has-error' if !@user.errors[:websites].empty? %>">
