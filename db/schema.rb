@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20131227154028) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.boolean  "full"
+    t.string   "status"
     t.string   "name"
     t.string   "tagline"
     t.text     "bio"

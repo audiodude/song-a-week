@@ -13,12 +13,19 @@ def login
       
     @user = User.find_by_email(params[:email])
     if @user.try(:authenticate, params[:password])
-      set_login_session(@user)
-      flash[:notice] = {
-        cls: 'info',
-        msg: 'You have been successfully logged in.'
-      }
-      redirect_to :root
+      if @user.status == 'NEW'
+        flash[:notice] = {
+          cls: 'warning',
+          msg: 'You have successfully logged in but your account has not yet been approved. Please continue to monitor your email for more information.'
+        }
+      else
+        set_login_session(@user)
+        flash[:notice] = {
+          cls: 'info',
+          msg: 'You have been successfully logged in.'
+        }
+        redirect_to :root
+      end
     else
       @errors[:general] = 'No user found with that email or invalid password.'
     end
@@ -37,6 +44,7 @@ end
 def apply
   if request.post?
     @user = User.new(user_params)
+    @user.status = 'NEW'
     for url in params[:user][:website].find_all{|url| !url.empty?}
       @user.websites << Website.new(url: url)
     end
