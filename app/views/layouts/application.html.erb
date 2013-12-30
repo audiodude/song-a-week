@@ -21,14 +21,14 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <% home_active = (controller.controller_name == 'main' && controller.action_name == 'index') %>
-          <li <%= raw('class="active"') if home_active %>><a href="#">home</a></li>
+          <li <%= raw('class="active"') if home_active %>><%= link_to 'home', :root %></li>
           <li><a href="#listen">listen</a></li>
           <li><a href="#about">about</a></li>
           <li><a href="#members">our members</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
-            <li><a href="#moderate">moderate applications</a></li>
+            <li><%= link_to 'moderate applications', moderate_users_path %></a></li>
             <li><a href="#weekly">weekly upload</a></li>
           <% end %>
           <li class="dropdown">

@@ -14,7 +14,7 @@ def login
     @user = User.find_by_email(params[:email])
     if @user.try(:authenticate, params[:password])
       if @user.status == 'NEW'
-        flash[:notice] = {
+        flash.now[:notice] = {
           cls: 'warning',
           msg: 'You have successfully logged in but your account has not yet been approved. Please continue to monitor your email for more information.'
         }

@@ -34,4 +34,6 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'will_paginate', '~> 3.0'
+
 ruby "2.0.0"
