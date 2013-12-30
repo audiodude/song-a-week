@@ -1,0 +1,45 @@
+<% if !@errors.empty? %>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <div class="alert alert-danger">
+      <ul>
+        <% @errors.each do |field, msg| %>
+          <li><%= msg %></li> 
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <h3>Login with your email address</h3>
+  </div>
+</div>
+
+<%= form_tag :login, method: 'POST', class: 'form-horizontal' do |f| %>
+<div class="form-group <%= 'has-error' if @errors && @errors[:email] %>">
+  <label for="user_email" class="col-sm-offset-4 col-sm-1 control-label">email</label>
+  <div class="col-sm-3">
+    <input type="email" name="email" class="form-control" placeholder="Your email" value="<%= params[:email] %>">
+  </div>
+</div>
+<div class="form-group <%= 'has-error' if @errors && @errors[:password] %>">
+  <label for="user_password" class="col-sm-offset-4 col-sm-1 control-label">password</label>
+  <div class="col-sm-3">
+    <input type="password" name="password" class="form-control" placeholder="Your password">
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-5 col-sm-3">
+    <input type="submit" value="Login">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-offset-5 col-sm-3">
+    <p><%= link_to 'forgot password?', :forgot %></p>
+    <p><%= link_to 'sign up here', :apply %></p>
+  </div>
+</div>
+<% end %>
