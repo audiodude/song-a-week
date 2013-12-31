@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   validates_associated :websites, message: 'One or more of the given websites was invalid'
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password, presence: true, on: :create
   validates(
       :username,
       presence: true,

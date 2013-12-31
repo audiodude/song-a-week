@@ -5,4 +5,24 @@ def moderate
   @users = @users.order('created_at DESC')
 end
 
+def reject
+  @user = User.find(params[:id])
+  @user.rejection = params[:rejection]
+  @user.status = 'REJECTED'
+  @user.save!
+  render json: {
+    msg: "#{@user.name} has been rejected."
+  }
+end
+
+def approve
+  @user = User.find(params[:id])
+  @user.approval = params[:approval]
+  @user.status = 'ACTIVE'
+  @user.save!
+  render json: {
+    msg: "#{@user.name} has been approved."
+  }
+end
+
 end

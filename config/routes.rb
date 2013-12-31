@@ -9,5 +9,9 @@ Songs::Application.routes.draw do
 
   resources :users, only: [] do
     get :moderate, on: :collection
+    member do
+      post :approve
+      post :reject
+    end
   end
 end

@@ -11,19 +11,62 @@
   </p>
 <% end %>
 
+<div class="row">
+	<div id="moderate-alert-container" class="col-sm-offset-1 col-sm-10">
+	</div>
+</div>
+
 <% for user in @users %>
-  <div class="row moderate-user">
-    <div class="col-sm-offset-1 col-sm-3">
-      <p class="moderate-name"><%= user.name %></p>
-			<% for website in user.websites %>
-			  <p><a href="<%= website.url %>"><%= truncate(website.url, length: 40) %></a></p>
-			<% end %>
-    </div>
-		<div class="col-sm-7">
-			<p class="moderate-username"><b>username:</b> <%= user.username %></p>
-			<p class="moderate-application">
-				<%= simple_format user.application %>
-			</p>
+  <div id="user-<%= user.id %>">
+		<div class="row moderate-user">
+			<div class="col-sm-offset-1 col-sm-3">
+				<p class="moderate-name"><%= user.name %></p>
+				<% for website in user.websites %>
+			    <p><a href="<%= website.url %>"><%= truncate(website.url, length: 40) %></a></p>
+				<% end %>
+			</div>
+			<div class="col-sm-7">
+				<p class="moderate-username"><b>username:</b> <%= user.username %></p>
+				<p class="moderate-application">
+					<%= simple_format user.application %>
+				</p>
+				<div class="btn-group">
+					<button type="button" class="btn btn-danger moderate-reject" data-user-id="<%= user.id %>">Reject</button>
+					<button type="button" class="btn btn-success moderate-approve" data-user-id="<%= user.id %>">Approve</button>
+				</div>
+			</div>
 		</div>
-  </div>
+		<div id="<%= user.id %>-reject" style="display:none;">
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-6">
+					<p class="directions">
+						Please provide a note that will be shown to this user about why his
+						or her application has been rejected:
+					</p>
+					<textarea id="<%= user.id %>-reject-input" class="form-control" rows="4"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-8 col-sm-2 submit-note">
+					<button type="button" class="btn btn-danger btn-submit-reject" data-user-id="<%= user.id %>">Submit rejection</button>
+				</div>
+			</div>
+		</div>
+		<div id="<%= user.id %>-approve" style="display:none;">
+			<div class="row">
+				<div class="col-sm-offset-4 col-sm-6">
+					<p class="directions">
+						Provide an optional note that will be shown to this user, welcoming
+						him or her to the site:
+					</p>
+					<textarea id="<%= user.id %>-approve-input" class="form-control" rows="4"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-8 col-sm-2 submit-note">
+					<button type="button" class="btn btn-success btn-submit-approve" data-user-id="<%= user.id %>">Submit approval</button>
+				</div>
+			</div>
+		</div>
+	</div>
 <% end %>
