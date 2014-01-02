@@ -62,8 +62,22 @@ def apply
 end
 
 def forgot
+  @errors = {}
   if request.post?
+    if params[:email].blank?
+      @errors[:email] = 'Email is required.'
+    end
+    return unless @errors.empty?
 
+    @user = User.find_by_email(params[:email])
+    if @user
+      # TODO: send the reset email
+    end
+    flash[:notice] = {
+      cls: 'info',
+      msg: 'If an account with that email was found, we will send an email shortly with instructions on how to reset your password.'
+    }
+    redirect_to :root
   end
 end
 

@@ -5,6 +5,7 @@ Songs::Application.routes.draw do
   get 'login', to: 'account#login', as: :login
   post 'login', to: 'account#login'
   get 'forgot-password', to: 'account#forgot', as: :forgot
+  post 'forgot-password', to: 'account#forgot'
   get 'sign_out', to: 'account#sign_out', as: :sign_out
 
   resources :users, only: [] do

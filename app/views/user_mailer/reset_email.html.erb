@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	<h2>Reset your password</h2>
+	<p>
+		Someone (hopefully you) has requested a password reset for the Song-A-Week
+		(songs.0-z-0.com) account associated with this email address.
+	</p>
+	<p>
+		If this was you, and you wish to reset your password, follow this link and
+		choose a new password on that page:<br/>
+		<a href="<%= url_for :reset, token: @token %>"><%= url_for :reset, token: @toekn %></a>
+	</p>
+	<p>
+		If you <em>didn't</em> request this password reset, simply ignore this email
+		and nothing will happen.
+	</p>
+  <p>
+   If you have any questions, you can email Travis the site administrator directly at <a href="mailto:audiodude@gmail.com">audiodude@gmail.com</a>.
+  </p>
+</body>
+</html>
+
