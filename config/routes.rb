@@ -7,6 +7,7 @@ Songs::Application.routes.draw do
   get 'forgot-password', to: 'account#forgot', as: :forgot
   post 'forgot-password', to: 'account#forgot'
   get 'sign_out', to: 'account#sign_out', as: :sign_out
+  get 'reset-password', to: 'account#reset', as: :reset
 
   resources :users, only: [] do
     get :moderate, on: :collection

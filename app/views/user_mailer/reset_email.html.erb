@@ -11,8 +11,8 @@
 	</p>
 	<p>
 		If this was you, and you wish to reset your password, follow this link and
-		choose a new password on that page:<br/>
-		<a href="<%= url_for :reset, token: @token %>"><%= url_for :reset, token: @toekn %></a>
+		choose a new password on the page:<br/>
+		<%= link_to reset_path(token: @token, only_path: false), reset_path(token: @token, only_path: false) %></a>
 	</p>
 	<p>
 		If you <em>didn't</em> request this password reset, simply ignore this email

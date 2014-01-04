@@ -8,6 +8,7 @@ class UserMailer < ActionMailer::Base
 
   def reset_email(user)
     @user = user
+    @token = '1234abc'
     mail(to: @user.email, subject: 'Reset your Song-A-Week password')
   end
 end

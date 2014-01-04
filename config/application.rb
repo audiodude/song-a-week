@@ -21,5 +21,7 @@ module Songs
     # config.i18n.default_locale = :de
 
     config.filter_parameters += [:password]
+
+    config.action_mailer.default_url_options = { host: 'songs.0-z-0.com' }
   end
 end

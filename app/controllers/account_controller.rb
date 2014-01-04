@@ -49,7 +49,7 @@ def apply
       @user.websites << Website.new(url: url)
     end
     if @user.save
-      WelcomeMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver
       flash[:notice] = {
         cls: 'info',
         msg: 'You have successfully applied for membership. You will receive an email shortly with more information.'
@@ -71,7 +71,7 @@ def forgot
 
     @user = User.find_by_email(params[:email])
     if @user
-      # TODO: send the reset email
+      UserMailer.reset_email(@user).deliver
     end
     flash[:notice] = {
       cls: 'info',
