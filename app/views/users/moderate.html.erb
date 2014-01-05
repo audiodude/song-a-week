@@ -16,9 +16,15 @@
 	</div>
 </div>
 
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+		<%= will_paginate @users, page_links: false %>
+	</div>
+</div>
+
 <% for user in @users %>
-  <div id="user-<%= user.id %>">
-		<div class="row moderate-user">
+  <div id="user-<%= user.id %>" class="moderate-user">
+		<div class="row">
 			<div class="col-sm-offset-1 col-sm-3">
 				<p class="moderate-name"><%= user.name %></p>
 				<% for website in user.websites %>
@@ -70,3 +76,9 @@
 		</div>
 	</div>
 <% end %>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+		<%= will_paginate @users, page_links: false %>
+	</div>
+</div>
