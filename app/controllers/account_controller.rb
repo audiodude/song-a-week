@@ -86,7 +86,7 @@ def reset
   @errors = {}
   @token = params[:token]
   @user = User.find_by_reset_token(@token)
-  if !@user
+  if !@user || !@token
     flash[:notice] = {
       cls: 'danger',
       msg: 'Invalid request, no user found to reset password.'
