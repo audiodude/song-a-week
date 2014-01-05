@@ -1,0 +1,14 @@
+Reset your Song-A-Week password
+===============================
+
+Someone (hopefully you) has requested a password reset for the Song-A-Week
+(songs.0-z-0.com) account associated with this email address.
+
+If this was you, and you wish to reset your password, follow this link and
+choose a new password on the page:
+<%= link_to reset_path(token: @user.reset_token, only_path: false), reset_path(token: @user.reset_token, only_path: false) %>
+
+If you didn't request this password reset, simply ignore this email
+and nothing will happen.
+
+If you have any questions, you can email Travis the site administrator directly at audiodude@gmail.com.
