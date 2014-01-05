@@ -20,7 +20,7 @@
 
 <%= form_tag :forgot, method: 'POST', class: 'form-horizontal' do |f| %>
 <div class="form-group <%= 'has-error' if @errors && @errors[:email] %>">
-  <label for="user_email" class="col-sm-offset-4 col-sm-1 control-label">email</label>
+  <label for="email" class="col-sm-offset-4 col-sm-1 control-label">email</label>
   <div class="col-sm-3">
     <input type="email" name="email" class="form-control" placeholder="Your email" value="<%= params[:email] %>">
     <span class="help-block">Enter your email address and we will email you a link to reset your password.</span>
@@ -32,5 +32,3 @@
   </div>
 </div>
 <% end %>
-
-

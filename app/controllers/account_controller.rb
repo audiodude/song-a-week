@@ -71,6 +71,7 @@ def forgot
 
     @user = User.find_by_email(params[:email])
     if @user
+      @user.save_reset_token!
       UserMailer.reset_email(@user).deliver
     end
     flash[:notice] = {
@@ -78,6 +79,37 @@ def forgot
       msg: 'If an account with that email was found, we will send an email shortly with instructions on how to reset your password.'
     }
     redirect_to :root
+  end
+end
+
+def reset
+  @errors = {}
+  @token = params[:token]
+  @user = User.find_by_reset_token(@token)
+  if !@user
+    flash[:notice] = {
+      cls: 'danger',
+      msg: 'Invalid request, no user found to reset password.'
+    }
+    redirect_to :forgot
+  end
+  if request.post?
+    if params[:password].blank?
+      @errors[:password] = 'You must select a new password.'
+    end
+    return unless @errors.empty?
+
+    @user.password = params[:password]
+    @user.reset_token = nil
+    if @user.save
+      flash[:notice] = {
+        cls: 'info',
+        msg: 'Your password has been reset.'
+      }
+      redirect_to :root
+    else
+      @errors[:user] = 'There was an error saving your changes. Please try again later.'
+    end
   end
 end
 

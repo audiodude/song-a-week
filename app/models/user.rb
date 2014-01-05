@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   })
   validates :name, presence: true, length: { maximum: 40 }
   validates :application, length: { minimum: 50, maximum: 1000 }
+
+  def save_reset_token!
+    self.reset_token = SecureRandom.urlsafe_base64(nil, false)
+    save!
+  end
 end
