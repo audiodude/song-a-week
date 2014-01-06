@@ -22,6 +22,12 @@
 	</div>
 </div>
 
+<% if @users.empty? %>
+  <div class="jumbotron">
+		<h3 style="text-align: center">There are no applications to approve at this time.</h3>
+	</div>
+<% end %>
+
 <% for user in @users %>
   <div id="user-<%= user.id %>" class="moderate-user">
 		<div class="row">
