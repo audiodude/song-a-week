@@ -43,17 +43,34 @@ end
 
 def apply
   if request.post?
-    @user = User.new(user_params)
+    @user = User.find_by_email(user_params[:email]).try(
+        :authenticate, user_params[:password])
+    if @user && @user.status = 'REJECTED'
+      updated_user = true
+      @user.update(user_params)
+    else
+      updated_user = false
+      @user = User.new(user_params)
+    end
     @user.status = 'NEW'
-    for url in params[:user][:website].find_all{|url| !url.empty?}
-      @user.websites << Website.new(url: url)
+    unless updated_user
+      for url in params[:user][:website].find_all{|url| !url.empty?}
+        @user.websites << Website.new(url: url)
+      end
     end
     if @user.save
-      UserMailer.welcome_email(@user).deliver
-      flash[:notice] = {
-        cls: 'info',
-        msg: 'You have successfully applied for membership. You will receive an email shortly with more information.'
-      }
+      if updated_user
+        flash[:notice] = {
+          cls: 'info',
+          msg: 'You have successfully re-applied for membership.'
+        }
+      else
+        UserMailer.welcome_email(@user).deliver
+        flash[:notice] = {
+          cls: 'info',
+          msg: 'You have successfully applied for membership. You will receive an email shortly with more information.'
+        }
+      end
       redirect_to :root
     end
   else
