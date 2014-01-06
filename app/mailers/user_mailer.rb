@@ -10,4 +10,14 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email, subject: 'Reset your Song-A-Week password')
   end
+
+  def approval_email(user)
+    @user = user
+    mail(to: @user.email, subject: 'Your application for Song-A-Week has been approved!')
+  end
+
+  def rejection_email(user)
+    @user = user
+    mail(to: @user.email, subject: 'We\'re sorry, your application for Song-A-Week has been rejected')
+  end
 end

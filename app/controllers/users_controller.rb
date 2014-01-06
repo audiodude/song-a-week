@@ -10,6 +10,7 @@ def reject
   @user.rejection = params[:rejection]
   @user.status = 'REJECTED'
   @user.save!
+  UserMailer.rejection_email(@user).deliver
   render json: {
     msg: "#{@user.name} has been rejected."
   }
@@ -20,6 +21,7 @@ def approve
   @user.approval = params[:approval]
   @user.status = 'ACTIVE'
   @user.save!
+  UserMailer.approval_email(@user).deliver
   render json: {
     msg: "#{@user.name} has been approved."
   }

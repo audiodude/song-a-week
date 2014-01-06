@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body style="max-width: 600px">
+  <h2>You've been approved, now get writing!</h2>
+	<p>
+		Congratulations, your application to Song-A-Week
+		(<a href="http://songs.0-z-0.com">songs.0-z-0.com</a>) has been approved!
+		An existing member thought you'd make a good fit in our little club and so
+		you are now a full member yourself.
+	</p>
+	<% if !@user.approval.blank? %>
+	  <p>
+			The member who approved your application sent along the following note:
+		</p>
+	  <div style="font-style: italic">
+			<%= simple_format @user.approval %>
+		</div>
+	<% end %>
+	<h3>What now?</h3>
+	<p>
+		Now you will start receiving emails reminding you to work on your song every
+		week. Once you have composed and recorded something for the week, you can
+		uploaded it to the site using the form at: {URL pending}. This will ensure
+		that you are marked as participating in the week's challenge and that you
+		remain in good standing on the site.
+  </p>
+  <p>
+		Weekly submissions are archived and aggregated for other member and random
+		visitors to enjoy, but only if you mark them public (which we hope you'll
+		do).
+	</p>
+  <p>
+   If you have any questions, you can email Travis the site administrator directly at <a href="mailto:audiodude@gmail.com">audiodude@gmail.com</a>.
+  </p>
+	<p>
+		Thanks, and we look forward to composing music alongside you!
+	</p>
+</body>
+</html>

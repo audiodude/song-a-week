@@ -1,0 +1,28 @@
+You've been approved, now get writing!
+======================================
+
+Congratulations, your application to Song-A-Week (http://songs.0-z-0.com)
+has been approved! An existing member thought you'd make a good fit in
+our little club and so you are now a full member yourself.
+
+<% if !@user.approval.blank? %>
+The member who approved your application sent along the following note:
+
+<%= @user.approval %>
+<% end %>
+
+-*- What now? -*-
+Now you will start receiving emails reminding you to work on your song every
+week. Once you have composed and recorded something for the week, you can
+uploaded it to the site using the form at: {URL pending}. This will ensure
+that you are marked as participating in the week's challenge and that you
+remain in good standing on the site.
+
+Weekly submissions are archived and aggregated for other member and random
+visitors to enjoy, but only if you mark them public (which we hope you'll
+do).
+
+If you have any questions, you can email Travis the site administrator directly at audiodude@gmail.com.
+
+Thanks, and we look forward to composing music alongside you!
+

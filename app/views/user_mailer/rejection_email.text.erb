@@ -1,0 +1,23 @@
+Your application was not approved
+=================================
+We're sorry, but your application to Song-A-Week (http://songs.0-z-0.com)
+has been rejected.
+
+<% if !@user.rejection.blank? %>
+The member who rejected your application sent along the following note:
+
+<%= @user.rejection %>
+<% else %>
+The member who rejected your application did not provide a reason.
+<% end %>
+
+-*- What now? -*-
+You are welcome to apply again. Simply fill out the application form with
+your existing email and password and your new application will be matched to
+you existing account and submitted again for approval.
+
+We ask that you be considerate and refrain from submitting applications
+under different email addresses or fake names. We're all friends here.
+
+If you have any questions, you can email Travis the site administrator directly at audiodude@gmail.com.
+
